@@ -3,7 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project.csproj", "{0D83CB95-39EC-4DF4-8F95-296B9DD40DB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project", "Project.csproj", "{0D83CB95-39EC-4DF4-8F95-296B9DD40DB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task", "Task", "{A79EF6BE-AFC4-48E3-A809-29F1AA6730D0}"
+	ProjectSection(SolutionItems) = preProject
+		Node.cs = Node.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{0BC70A56-DB09-4153-8E69-4CC777622A40}"
+	ProjectSection(SolutionItems) = preProject
+		Interface.cs = Interface.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interact", "Interact", "{38843D94-2A43-4D5B-9DE4-188BBE7AECDA}"
+	ProjectSection(SolutionItems) = preProject
+		Interactor.cs = Interactor.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +33,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BC70A56-DB09-4153-8E69-4CC777622A40} = {A79EF6BE-AFC4-48E3-A809-29F1AA6730D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09AC6EE4-885B-42E6-A334-109448EA71E7}
