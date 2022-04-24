@@ -3,7 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project.csproj", "{0D83CB95-39EC-4DF4-8F95-296B9DD40DB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project", "Project.csproj", "{0D83CB95-39EC-4DF4-8F95-296B9DD40DB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task", "Task", "{71093926-522E-4FAB-A7A6-E1EE600C8CA6}"
+	ProjectSection(SolutionItems) = preProject
+		ArraySorter.cs = ArraySorter.cs
+		BinarySearch.cs = BinarySearch.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArrayGenerator", "ArrayGenerator", "{48BA39CF-997D-453E-8AA3-38E238C89907}"
+	ProjectSection(SolutionItems) = preProject
+		ArrayGen.cs = ArrayGen.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Show", "Show", "{E36EFA6C-BF9E-434F-AEA3-B7DE7F46637C}"
+	ProjectSection(SolutionItems) = preProject
+		ShowArraysAndValue.cs = ShowArraysAndValue.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
