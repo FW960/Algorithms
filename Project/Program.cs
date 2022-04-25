@@ -6,7 +6,10 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ShowFibNum.Result(FibNum.CalculcateUsingRecursy(1000, ArrayGenerator.GenerateIntArray()));
+
+            ShowFibNum.Result(FibNum.CalculateUsingCycle(ArrayGenerator.GenerateIntArray().Length));
         }
+
     }
 }
