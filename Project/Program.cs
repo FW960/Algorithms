@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Project
+﻿namespace Project
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ShowStrangeNum.Result(Calculate.StrangeSum(ArrayGenerator.GenerateIntArray()));
         }
     }
 }
