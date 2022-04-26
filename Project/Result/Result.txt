@@ -1,0 +1,2 @@
+﻿1.Array - 30.08us
+2.HashSet - 181.5ns
