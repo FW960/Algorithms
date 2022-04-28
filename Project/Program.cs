@@ -1,4 +1,4 @@
-﻿using System;
+﻿using TreeStructure;
 
 namespace Project
 {
@@ -6,7 +6,9 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Tree tree = Tree.GenTree();
+
+            EnumerateBinaryTree.BFS(tree); EnumerateBinaryTree.BFS(tree);
         }
     }
 }
