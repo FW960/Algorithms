@@ -1,4 +1,4 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
 
 namespace Project
 {
@@ -6,7 +6,7 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
         }
     }
 }
