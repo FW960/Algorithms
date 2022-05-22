@@ -17,17 +17,10 @@ namespace Task
 
         private int[][] InitBuckets(int arrayLength)
         {
-            int[][] buckets = new int[100][];
+            int[][] buckets = new int[20][];
 
             for (int i = 0; i < buckets.Length; i++)
-            {
                 buckets[i] = new int[arrayLength];
-
-                for (int j = 0; j < buckets[i].Length; j++)
-                {
-                    buckets[i][j] = -1;
-                }
-            }
 
             return buckets;
         }
@@ -63,9 +56,6 @@ namespace Task
                 {
                     if (divideValMult + divideVal > array[i] && divideValMult <= array[i])
                     {
-                        if (j > buckets.Length - 1)
-                            j = buckets.Length - 1;
-
                         map.Remove(j, out bucketCount);
 
                         buckets[j][bucketCount] = array[i];
@@ -80,14 +70,25 @@ namespace Task
                 }
             }
 
+            divideValMult = divideVal;
+
+
             for (int i = 0; buckets.Length > i; i++)
             {
-                buckets[i] = SortBucket(buckets[i], divideVal);
-                divideVal += divideVal;
+                /*if (maxVal*2 <= array.Length)
+                {
+                    buckets[i] = SortBucket(buckets[i], divideValMult, divideVal);
+
+                    divideValMult += divideVal;
+                }
+                else
+                {*/
+                    buckets[i] = CorrectArray(buckets[i]);
+                    buckets[i] = QuickSort(buckets[i]);
+                /*}*/
             }
+
             return SortBuckets(buckets, array.Length);
-
-
         }
 
         private int[] SortBuckets(int[][] array, int length)
@@ -103,15 +104,77 @@ namespace Task
             return finalArray;
         }
 
-        private int[] SortBucket(int[] array, int divideVal)
+        private int[] CorrectArray(int[] array)
         {
-            int rightArrayLength = 0; int count;
+            int correctArrayLength = 0;
+
+            for (int i = 0; array.Length > i; i++)
+            {
+                if (array[i] == 0)
+                    break;
+
+                correctArrayLength++;
+            }
+
+            int[] finalArray = new int[correctArrayLength];
+
+            for (int i = 0; i < correctArrayLength; i++)
+                finalArray[i] = array[i];
+
+            return finalArray;
+        }
+        public static int[] QuickSort(int[] array)
+        {
+            if (array.Length == 0)
+                return array;
+
+            return QuickSort(array, 0, array.Length - 1);
+        }
+        private static int[] QuickSort(int[] array, int start, int end)
+        {
+            int mid = array[(start + end) / 2];
+
+            int i = start, j = end;
+
+            do
+            {
+                while (array[i] < mid)
+                   i++;
+
+                while (array[j] > mid)
+                    j--;
+
+                if (i <= j)
+                {
+                    if (array[i] > array[j])
+                    {
+                        int temp = array[i]; array[i] = array[j]; array[j] = temp;
+                    }
+                    i++;
+                    j--;
+                }
+
+            } while (i <= j);
+
+
+            if (i < end)
+                QuickSort(array, i, end);
+
+            if (start < j)
+                QuickSort(array, start, j);
+
+            return array;
+        }
+
+        private int[] SortBucket(int[] array, int divideValMult, int divideVal)
+        {
+            int correctArrayLength = 0; int count;
 
             var map = new Dictionary<int, int>();
 
             for (int i = 0; array.Length > i; i++)
             {
-                if (array[i] == -1)
+                if (array[i] == 0)
                     break;
 
                 if (map.ContainsKey(array[i]))
@@ -125,14 +188,14 @@ namespace Task
                     map.Add(array[i], 1);
                 }
 
-                rightArrayLength++;
+                correctArrayLength++;
             }
 
-            int[] newArray = new int[rightArrayLength];
+            int[] newArray = new int[correctArrayLength];
 
             int amount; int lastValAmount = 0;
 
-            for (int i = 0; divideVal > i; i++)
+            for (int i = divideValMult - divideVal; i < divideValMult; i++)
             {
                 if (map.ContainsKey(i))
                 {
