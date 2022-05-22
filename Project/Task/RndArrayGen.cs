@@ -12,10 +12,10 @@ namespace Task
         {
             Random random = new Random();
 
-            int[] array = new int[random.Next(100000000, 100000000)];
+            int[] array = new int[100000000];
 
             for (int i = 0; i < array.Length; i++)
-                array[i] = random.Next(1, 10000000);
+                array[i] = random.Next(1, int.MaxValue);
 
             return array;
         }

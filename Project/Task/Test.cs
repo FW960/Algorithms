@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,11 @@ namespace Task
     { 
         public static void Run()
         {
-            Sort sort = new Sort();
+            string filePath = (@"C:\Users\unsortedArray.txt");
 
-            int[] array = sort.BucketSort(RndArray.Get());
+            Sort.ExternalSort(filePath);
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.WriteLine($"{i} {array[i]}");
-            }
+            int [] array = Sort.BucketSort(RndArray.Get());
         }
     }
 }
