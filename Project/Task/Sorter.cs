@@ -61,7 +61,7 @@ namespace Task
         {
             string[] allParts = Directory.EnumerateFileSystemEntries(dirPath).ToArray();
 
-            Dictionary<int, (string, int)> dict = new Dictionary<int, (string, int)>();
+            Dictionary<string, (StreamReader, int)> dict = new Dictionary<string, (StreamReader, int)>();
 
             int allValues = 0;
 
@@ -71,65 +71,72 @@ namespace Task
 
                 allValues += enumString.Length;
 
-                dict.Add(i, (allParts[i], 0));
+                dict.Add(allParts[i], (new StreamReader(allParts[i]), 0));
             }
 
-            string[] values = new string[0];
+            string lastFileUsed = string.Empty;
 
-            (string, int) value = ("", 0);
+            (StreamReader, int) value;
 
             int minVal = int.MaxValue;
-
-            string lastFilePath = "";
-
-            int lastIndex = 0;
-
-            int key = 0;
 
             for (int e = 0; e < allValues; e++)
             {
                 for (int i = 0; i < allParts.Length; i++)
                 {
-                    dict.TryGetValue(i, out value);
+                    dict.Remove(allParts[i], out value);
 
-                    values = new string[File.ReadAllLines(value.Item1).Length];
+                    int compareValue = Convert.ToInt32(value.Item1.ReadLine());
 
-                    values = File.ReadAllLines(value.Item1).ToArray();
-
-                    for (int j = value.Item2; j < values.Length; j++)
+                    if (compareValue < minVal)
                     {
-                        if (values[j] == string.Empty)
-                            break;
+                        minVal = compareValue;
 
-                        if (Convert.ToInt32(values[j]) < minVal)
-                        {
-                            minVal = Convert.ToInt32(values[j]);
+                        lastFileUsed = allParts[i];
 
-                            lastFilePath = value.Item1;
+                        value.Item1 = new StreamReader(lastFileUsed);
 
-                            lastIndex = ++value.Item2;
+                        for (int j = 0; j < value.Item2; j++)
+                            value.Item1.ReadLine();
 
-                            key = i;
+                        dict.Add(lastFileUsed, (value.Item1, value.Item2));
 
-                            continue;
-                        }
                     }
-                }
-                dict.Remove(key);
+                    else
+                    {
+                        value.Item1 = new StreamReader(allParts[i]);
 
-                dict.Add(key, (lastFilePath, lastIndex));
+                        for (int j = 0; j < value.Item2; j++)
+                            value.Item1.ReadLine();
+
+                        dict.Add(allParts[i], (value.Item1, value.Item2));
+                    }
+
+
+                }
+                dict.Remove(lastFileUsed, out value);
+
+                value.Item2++;
+
+                value.Item1 = new StreamReader(lastFileUsed);
+
+                for (int i = 0; i < value.Item2; i++)
+                    value.Item1.ReadLine();
+
+                dict.Add(lastFileUsed, (value.Item1, value.Item2));
 
                 File.AppendAllText(sortedFilePath, $@"{minVal}
 ");
                 minVal = int.MaxValue;
-            }
 
+            }
+            
 
         }
 
         private static void ReadFromFileAndWritePart(string filePath, StreamReader sr)
         {
-            int[] part = new int[1000000];
+            int[] part = new int[10000000];
 
             int lastNum = 0;
 
@@ -140,7 +147,7 @@ namespace Task
                     part[i] = Convert.ToInt32(sr.ReadLine());
                     lastNum = i;
                 }
-                    
+
 
             }
             catch

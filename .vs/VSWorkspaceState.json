@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Project"
+    "\\Project",
+    "\\Project\\Task"
   ],
-  "SelectedNode": "\\Project\\Project.sln",
+  "SelectedNode": "\\Project\\Task\\Sorter.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -7,6 +7,8 @@ namespace Project
     {
         static void Main(string[] args)
         {
+            /*ForTest.main();*/
+
             Test.Run();
         }
     }
