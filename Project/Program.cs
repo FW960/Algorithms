@@ -1,4 +1,5 @@
 ﻿using System;
+using Task;
 
 namespace Project
 {
@@ -6,7 +7,9 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            /*ForTest.main();*/
+
+            Test.Run();
         }
     }
 }
